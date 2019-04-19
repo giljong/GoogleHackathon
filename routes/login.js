@@ -20,11 +20,11 @@ router.post('/',(req,res)=>{
             console.log(time+': '+id + ' 로그인 실패 - '+ip);
         }
         else {
-            req.session.flag = 1;
+            req.session.flag = result[0].FLAG;
             req.session.user = id;
             req.session.save(() => {
                 console.log(time+ ': '+id + ' 로그인 성공 - '+ ip);
-                res.send('<script type="text/javascript">alert("로그인 성공!");window.location.href = "/";</script>');
+                res.send('<script type="text/javascript">alert("로그인 성공!");window.location.href = "/auth";</script>');
 			})
         }
     })
