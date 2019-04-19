@@ -1,8 +1,10 @@
 #addComment {
     margin-bottom: 5px;
+    width: 50%;
     padding: 0.22em;
     border: 1px solid #eee;
     background-color: #fafbf7;
+    margin:auto;
 }
 #addComment textarea {
     width: 99%;
@@ -14,8 +16,8 @@
 .star-input>.input,
 .star-input>.input>label:hover,
 .star-input>.input>input:focus+label,
-.star-input>.input>input:checked+label{display: inline-block;vertical-align:middle;background:url('img/grade_img.png')no-repeat;}
-.star-input{display:inline-block; white-space:nowrap;width:225px;height:40px;padding:25px;line-height:30px;}
+.star-input>.input>input:checked+label{display: inline-block;vertical-align:middle;background:url('../img/grade_img.png')no-repeat;}
+.star-input{display:inline-block; white-space:nowrap;width:225px;height:40px;padding-left:840px;line-height:30px;}
 .star-input>.input{display:inline-block;width:150px;background-size:150px;height:28px;white-space:nowrap;overflow:hidden;position: relative;}
 .star-input>.input>input{position:absolute;width:1px;height:1px;opacity:0;}
 star-input>.input.focus{outline:1px dotted #ddd;}
@@ -29,4 +31,4 @@ star-input>.input.focus{outline:1px dotted #ddd;}
 .star-input>.input>label[for="p3"]{width:90px;z-index:3;}
 .star-input>.input>label[for="p4"]{width:120px;z-index:2;}
 .star-input>.input>label[for="p5"]{width:150px;z-index:1;}
-.star-input>output{display:inline-block;width:60px; font-size:18px;text-align:right; vertical-align:middle;}
+.star-input>output{display:inline-block;width:60px; font-size:18px;text-align:left; vertical-align:middle;}

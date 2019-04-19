@@ -1,15 +1,13 @@
-/*별점 : .star-input*/
-/*출처 : http://codepen.io/naradesign/pen/zxPbOw*/
 var starRating = function(){
 var $star = $(".star-input"),
     $result = $star.find("output>b");
-	
+
   	$(document)
-	.on("focusin", ".star-input>.input", 
+	.on("focusin", ".star-input>.input",
 		function(){
    		 $(this).addClass("focus");
  	})
-		 
+
    	.on("focusout", ".star-input>.input", function(){
     	var $this = $(this);
     	setTimeout(function(){
@@ -18,7 +16,7 @@ var $star = $(".star-input"),
      	 	}
    		}, 100);
  	 })
-  
+
     .on("change", ".star-input :radio", function(){
     	$result.text($(this).next().text());
   	})
