@@ -1,6 +1,0 @@
-*{margin: 0; padding: 0;}
-li{list-style: none;}
-a{text-decoration: none;}
-
-.wrapper{width:1170px; margin: 0 auto;}
-.clearfix{content: ''; display: block;clear: both;}
