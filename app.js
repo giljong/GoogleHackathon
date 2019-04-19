@@ -11,6 +11,7 @@ const registerRouter = require('./routes/register');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const logoutRouter = require('./routes/logout');
+const writeRouter = require('./routes/wrnews');
 const schedule = require('node-schedule');
 const productRouter = require('./routes/news');
 
@@ -25,6 +26,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/', indexRouter);
 //app.use('/mypage',myPageRouter);
+app.use('/wrnews',writeRouter);
 app.use('/login',loginRouter);
 app.use('/auth',authRouter);
 app.use('/register',registerRouter);
