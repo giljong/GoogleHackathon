@@ -10,7 +10,8 @@ const authRouter = require('./routes/auth');
 const registerRouter = require('./routes/register');
 const helmet = require('helmet');
 const bodyParser = require('body-parser');
-const logoutRouter = require('./routes/logout');
+//const logoutRouter = require('./routes/logout');
+const productRouter = require('./routes/news')
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
@@ -22,16 +23,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/', indexRouter);
-app.use('/mypage',myPageRouter);
+//app.use('/mypage',myPageRouter);
 app.use('/login',loginRouter);
 app.use('/auth',authRouter);
 app.use('/register',registerRouter);
-app.use('/logout',logoutRouter);
+//app.use('/logout',logoutRouter);
 app.set('view engine', 'ejs');
+app.use('/news',productRouter);
 app.use(helmet());
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+/*app.use(function(req, res, next) {
   next(createError(404));
 });
 
@@ -44,7 +46,7 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('404.ejs');
-});
+});*/
 
 app.listen(3000, "0.0.0.0", () => {
   console.log("connect");
