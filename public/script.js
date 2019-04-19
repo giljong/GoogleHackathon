@@ -1,4 +1,13 @@
 (function($) {
+  $(window).scroll(function(){
+      var position = $(document).scrollTop();
+      if (position > 300){
+        $("#cssmenu2").css('top',  position-250 );
+      }
+      if (position < 300){
+        $("#cssmenu2").css('top',  0);
+      }
+  });
 
   $.fn.menumaker = function(options) {
 

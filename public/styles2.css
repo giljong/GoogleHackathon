@@ -1,9 +1,9 @@
 @import url(http://fonts.googleapis.com/css?family=Oswald);
-#cssmenu,
-#cssmenu ul,
-#cssmenu ul li,
-#cssmenu ul li a,
-#cssmenu #menu-button {
+#cssmenu2,
+#cssmenu2 ul,
+#cssmenu2 ul li,
+#cssmenu2 ul li a,
+#cssmenu2 #menu-button {
   margin: 0;
   padding: 0;
   border: 0;
@@ -15,8 +15,8 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-#cssmenu:after,
-#cssmenu > ul:after {
+#cssmenu2:after,
+#cssmenu2 > ul:after {
   content: ".";
   display: block;
   clear: both;
@@ -24,10 +24,10 @@
   line-height: 0;
   height: 0;
 }
-#cssmenu #menu-button {
+#cssmenu2 #menu-button {
   display: none;
 }
-#cssmenu {
+#cssmenu2 {
   width: auto;
   border: 3px solid #0A6EFF;
   border-radius: 3px;
@@ -36,24 +36,24 @@
   background: #f7f7f7;
   box-shadow: 1px 1px 0 #1478FF, 2px 2px 0 #288CFF, 3px 3px 3px rgba(0, 0, 0, 0.35);
 }
-#cssmenu > ul {
+#cssmenu2 > ul {
   background: url('images/bg.png');
 }
-#cssmenu > ul > li {
+#cssmenu2 > ul > li {
   float: left;
 }
-#cssmenu.align-center > ul {
+#cssmenu2.align-center > ul {
   font-size: 0;
   text-align: center;
 }
-#cssmenu.align-center > ul > li {
+#cssmenu2.align-center > ul > li {
   display: inline-block;
   float: none;
 }
-#cssmenu.align-right > ul > li {
+#cssmenu2.align-right > ul > li {
   float: right;
 }
-#cssmenu > ul > li > a {
+#cssmenu2 > ul > li > a {
   padding: 20px 25px;
   font-size: 20px;
   text-transform: uppercase;
@@ -65,12 +65,12 @@
   -o-transition: all .2s ease;
   transition: all .2s ease;
 }
-#cssmenu > ul > li > a:hover,
-#cssmenu > ul > li:hover > a,
-#cssmenu > ul > li.active > a {
+#cssmenu2 > ul > li > a:hover,
+#cssmenu2 > ul > li:hover > a,
+#cssmenu2 > ul > li.active > a {
   color: #148CFF;
 }
-#cssmenu #menu-indicator {
+#cssmenu2 #menu-indicator {
   position: absolute;
   bottom: 0;
   display: block;
@@ -84,28 +84,28 @@
   -o-transition: all 0.25s ease-out;
   transition: all 0.25s ease-out;
 }
-#cssmenu.small-screen {
+#cssmenu2.small-screen {
   width: 100%;
 }
-#cssmenu.small-screen > ul,
-#cssmenu.small-screen.align-center > ul {
+#cssmenu2.small-screen > ul,
+#cssmenu2.small-screen.align-center > ul {
   width: 100%;
   text-align: left;
 }
-#cssmenu.small-screen > ul > li,
-#cssmenu.small-screen.align-center > ul > li {
+#cssmenu2.small-screen > ul > li,
+#cssmenu2.small-screen.align-center > ul > li {
   float: none;
   display: block;
   border-top: 1px solid rgba(100, 100, 100, 0.1);
 }
-#cssmenu.small-screen > ul > li > a {
+#cssmenu2.small-screen > ul > li > a {
   padding: 18px 25px;
 }
-#cssmenu.small-screen > ul > li:after,
-#cssmenu.small-screen > ul > li:before {
+#cssmenu2.small-screen > ul > li:after,
+#cssmenu2.small-screen > ul > li:before {
   display: none;
 }
-#cssmenu.small-screen #menu-button {
+#cssmenu2.small-screen #menu-button {
   display: block;
   padding: 18px 25px;
   cursor: pointer;
@@ -115,10 +115,10 @@
   color: #148CFF;
   background: url('images/bg.png');
 }
-#cssmenu.small-screen #menu-button.menu-opened {
+#cssmenu2.small-screen #menu-button.menu-opened {
   color: #148CFF;
 }
-#cssmenu.small-screen #menu-button:after {
+#cssmenu2.small-screen #menu-button:after {
   content: "";
   position: absolute;
   right: 25px;
@@ -132,11 +132,11 @@
   width: 18px;
   height: 3px;
 }
-#cssmenu.small-screen #menu-button.menu-opened:after {
+#cssmenu2.small-screen #menu-button.menu-opened:after {
   border-top: 2px solid #148CFF;
   border-bottom: 2px solid #148CFF;
 }
-#cssmenu.small-screen #menu-button:before {
+#cssmenu2.small-screen #menu-button:before {
   content: "";
   position: absolute;
   right: 25px;
@@ -146,9 +146,9 @@
   height: 2px;
   background: #444444;
 }
-#cssmenu.small-screen #menu-button.menu-opened:before {
+#cssmenu2.small-screen #menu-button.menu-opened:before {
   background: #148CFF;
 }
-#cssmenu.small-screen #menu-indicator {
+#cssmenu2.small-screen #menu-indicator {
   display: none;
 }
