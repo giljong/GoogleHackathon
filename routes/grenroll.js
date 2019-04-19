@@ -18,7 +18,7 @@ router.get('/',(req,res) => {
             if(result.length!==0)
                 res.send('<script type="text/javascript">alert("이미 등록된 언론사입니다.");window.location.href="/";</script>');
             else{
-                db.query('insert into Gr (GRNAME,GRURL) values (?,?)',[req.body.grname,req.body.grurl]);
+                db.query('insert into Gr (GRNAME,GRURL,CEO) values (?,?,?)',[req.body.grname,req.body.grurl,req.session.user]);
                 res.send('<script type="text/javascript">alert("언론사 등록이 완료되었습니다.");window.location.href="/";</script>')
             }
         })
