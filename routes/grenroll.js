@@ -1,6 +1,6 @@
 //기자 등록
 const express = require('express');
-const db = require('../db/connection');
+const db = require('../db/connetion');
 const router = express.Router();
 
 router.get('/',(req,res) => {

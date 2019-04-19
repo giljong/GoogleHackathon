@@ -1,6 +1,6 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
-const db = require('../db/connection');
+const db = require('../db/connetion');
 const router = express.Router();
 const moment = require('moment');
 const randomstring = require('randomstring');

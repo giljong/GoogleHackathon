@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require('../db/connection');
+const db = require('../db/connetion');
 const crypto = require('crypto');
 const moment = require('moment');
 const router = express.Router();
@@ -16,7 +16,7 @@ router.post('/',(req,res)=>{
     db.query('select * from Users where EMAIL = ? and PW = ?' , [id,pw], (err, result) => {
 		if (err) throw err;
         if(result.length === 0){
-            res.send('<script type="text/javascript">alert("로그인 실패!(# `)3′");window.location.href="/"</script>');
+            res.send('<script type="text/javascript">alert("로그인 실패!");window.location.href="/"</script>');
             console.log(time+': '+id + ' 로그인 실패 - '+ip);
         }
         else {
