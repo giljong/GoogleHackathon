@@ -57,14 +57,14 @@ router.get('/', (req,res) => {
                     const transporter = nodemailer.createTransport({
                         service: 'Gmail',
                         auth: {
-                            user: 'minjong5054@daum.net', 
+                            user: 'minjong5054@gmail,com', 
                             pass: 'pj83918332'
                         }
                     });
                     const mailOptions = {
-                        from: 'teamlogsr@gmail.com',
+                        from: '2NfU',
                         to: email ,
-                        subject: 'LOGCON 인증',
+                        subject: '2NfU 인증',
                         text: '가입완료를 위해 <'+authkey+'> 를 입력해주세요'
                     };
                     transporter.sendMail(mailOptions, (err, response) => {

@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const db = require('../db/connetion')
 
 /* GET home page. */
 router.get('/', (req, res) => {
   if((req.session.user === undefined)){
+    db.query('select * from News where ')
     res.render('index.ejs',{
-      score : '0',
-      user_id : 'guest',
-      user_school: 'undefined'
+      
     });
   }
   else if(!(req.session.flag) && (req.session.user !== undefined))
