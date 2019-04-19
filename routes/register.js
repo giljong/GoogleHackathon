@@ -28,18 +28,18 @@ router.post('/',(req,res) => {
             else{
                 const authkey = randomstring.generate();
                 db.query('insert into Users (PW,EMAIL,AUTHKEY) values (?,?,?)',[tmpPwd,tmpEmail,authkey]);
-                res.send('<script type="text/javascript">alert("회원가입 성공!ヾ|๑╹◡╹๑|ﾉ");window.location.href="/";</script>');
+                res.send('<script type="text/javascript">alert("회원가입 성공!ヾ|๑╹◡╹๑|ﾉ");window.location.href="/login";</script>');
                 const transporter = nodemailer.createTransport({
                     service: 'Gmail',
                     auth: {
-                        user: 'teamlogsr@gmail.com', 
-                        pass: 'teamlogzzang2017'
+                        user: 'minjong5054@gmail.com', 
+                        pass: 'pj83918332'
                     }
                 });
                 const mailOptions = {
-                    from: 'teamlogsr@gmail.com',
+                    from: '2NfU',
                     to: tmpEmail ,
-                    subject: 'LOGCON 인증',
+                    subject: '2NfU 인증',
                     text: '가입완료를 위해 <'+authkey+'> 를 입력해주세요'
                 };
                 transporter.sendMail(mailOptions, (err, response) => {

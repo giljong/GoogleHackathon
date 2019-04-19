@@ -6,10 +6,10 @@ const moment = require('moment');
 const randomstring = require('randomstring');
 
 router.get('/', (req,res) => {
-    if(!(req.session.user === undefined) && req.session.flag === 0){
-                res.render('auth.ejs',{
-                    id : req.session.user
-         });
+    if((req.session.user !== undefined) && req.session.flag === 0){
+        res.render('auth.ejs',{
+            id : req.session.user
+        });
     }
     else
         res.redirect('/');
@@ -29,10 +29,10 @@ router.get('/', (req,res) => {
         req.socket.remoteAddress ||
         req.connection.socket.remoteAddress;
         if(!(req.body.key===undefined)){
-            db.query('select AUTHKEY from Users where ID = ?',req.session.user,(err,result) => {
+            db.query('select AUTHKEY from Users where email = ?',req.session.user,(err,result) => {
                 if(err) console.log(err);
                 if((key === result[0].AUTHKEY)){
-                    db.query('update Users set FLAG=1 where ID = ?',req.session.user);
+                    db.query('update Users set FLAG=1 where email = ?',req.session.user);
                     req.session.flag = 1;
                     req.session.save(() => {
                         res.send('<script type="text/javascript">alert("인증성공!(๑′ᴗ‵๑)");window.location.href="/";</script>');

@@ -4,7 +4,9 @@
    <meta charset='utf-8'>
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="../public/styles.css">
+   <link rel="stylesheet" href="../public/style.css">
+   <link rel="stylesheet" href="../public/style2.css">
+   <link rel="stylesheet" href="../public/style3.css">
    <link rel="stylesheet" href="../public/comment.css">
    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
    <script src="../public/star.js"></script>
@@ -22,9 +24,8 @@
     </ul>
   </div>
 
-  <div> //뉴스 내용
-
-
+  <div> 
+    <%= contents=>
   </div>
 
 
@@ -32,20 +33,17 @@
       <div id="addComment">
           <textarea style="addComment-ta" name="memo" rows="7" cols="50"></textarea>
       </div>
-      <span class="star-input">
-        <span class="input">
-            <input type="radio" name="star-input" value="1" id="p1">
-            <label for="p1">1</label>
-            <input type="radio" name="star-input" value="2" id="p2">
-            <label for="p2">2</label>
-            <input type="radio" name="star-input" value="3" id="p3">
-            <label for="p3">3</label>
-            <input type="radio" name="star-input" value="4" id="p4">
-            <label for="p4">4</label>
-            <input type="radio" name="star-input" value="5" id="p5">
-            <label for="p5">5</label>
-          </span>
-      </span>
+      <div>
+        <label>평점</label>
+        <select name="score" required>
+            <option disabled selected>점수를 선택하세요</option>
+            <option value="1">★☆☆☆☆</option>
+            <option value="2">★★☆☆☆</option>
+            <option value="3">★★★☆☆</option>
+            <option value="4">★★★★☆</option>
+            <option value="5">★★★★★</option>
+        </select>
+    </div>
       <input type="submit" value="댓글 쓰기" />
   </form>
 
