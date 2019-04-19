@@ -58,8 +58,8 @@ router.get('/', (req,res) => {
                     const transporter = nodemailer.createTransport({
                         service: 'Gmail',
                         auth: {
-                            user: 'teamlogsr@gmail.com', 
-                            pass: 'teamlogzzang2017'
+                            user: 'minjong5054@daum.net', 
+                            pass: 'pj83918332'
                         }
                     });
                     const mailOptions = {
