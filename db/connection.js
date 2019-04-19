@@ -1,20 +1,20 @@
 const mysql = require('mysql');
 var db_config = {
     host: 'localhost',
-    port: 3306,
+    port: 3307,
     user: 'root',
-    password: '',
+    password: 'wlrn2002',
     database: 'NNFU'
 };
 
 
 
   var connection;
-  
+
   function handleDisconnect() {
     connection = mysql.createConnection(db_config); // Recreate the connection, since
                                                     // the old one cannot be reused.
-  
+
     connection.connect((err) => {              // The server is either down
       if(err) {                                     // or restarting (takes a while sometimes).
         console.log('error when connecting to db:', err);
@@ -31,9 +31,7 @@ var db_config = {
       }
     });
   }
-  
+
 handleDisconnect();
 
 module.exports=connection;
-
-
