@@ -9,11 +9,12 @@ router.get('/:num',(req,res) => {
     else{
         db.query('select * from News where id = ?',req.params.num,(err,result) => {
             if(err) console.log(err);
-            db.query('select * from comments where id = ? ordey by rand()',req.params.num,(error,results) => {
+            db.query('select * from comments where id = ? ordey by asc',req.params.num,(error,results) => {
                 if(error) console.log(error);
                 res.render('newspage.ejs',{
                     contents : result[0].contents,
-                    comments : results
+                    comments : results,
+                    len : results.length
                 })
             })
         })
@@ -41,3 +42,4 @@ router.get('/:num',(req,res) => {
         })
     }
 })
+module.exports = router;

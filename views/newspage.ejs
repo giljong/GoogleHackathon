@@ -48,6 +48,7 @@
       <input type="submit" value="댓글 쓰기" />
   </form>
   <table class="table table-striped">
+    <% if(comments !== false){ %>
     <thead>
       <tr>
         <th>아이디</th>
@@ -55,18 +56,19 @@
       </tr>
     </thead>
     <tbody>
-      <% news.forEach(function (item,index){ %>
+      <% for (var i = 0; i < len; i++){ %>
         <tr>
           <td>
-            <%= item.USER %>
+            <%= comments[i].USER %>
           </td>
   <td>
-    <%= item.CONTENTS %>
+    <%= comments[i].CONTENTS %>
   </td>
   </tr>
-    <% })%>
+    <% }%>
   </tbody>
   </table>
-
+  <% }else{%>
+    <tr>댓글이 없습니다</tr>
 </body>
 <html>

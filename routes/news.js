@@ -3,7 +3,10 @@ var express = require('express')
 var router = express.Router()
 var fs = require('fs')
 var db = require('../db/connetion');
+var ejs = require('ejs');
+var bodyParser = require('body-parser');
 
+router.use(bodyParser.urlencoded({ extended: false }));
 
 //게시판 페이징
 
@@ -73,8 +76,7 @@ router.get("/All/:cur", function (req, res) {
     totalPageCount = data[0].cnt
 
 //현제 페이지
-    var curPage = req.params.cur;
-
+    var curPage = 1;
     console.log("현재 페이지 : " + curPage, "전체 페이지 : " + totalPageCount);
 
 
@@ -165,7 +167,7 @@ return
 totalPageCount = data[0].cnt
 
 //현제 페이지
-var curPage = req.params.cur;
+var curPage = 1;
 
 console.log("현재 페이지 : " + curPage, "전체 페이지 : " + totalPageCount);
 
@@ -256,7 +258,7 @@ return
 totalPageCount = data[0].cnt
 
 //현제 페이지
-var curPage = req.params.cur;
+var curPage = 1;
 
 console.log("현재 페이지 : " + curPage, "전체 페이지 : " + totalPageCount);
 
@@ -347,7 +349,7 @@ return
 totalPageCount = data[0].cnt
 
 //현제 페이지
-var curPage = req.params.cur;
+var curPage = 1;
 
 console.log("현재 페이지 : " + curPage, "전체 페이지 : " + totalPageCount);
 
@@ -439,7 +441,7 @@ return
 totalPageCount = data[0].cnt
 
 //현제 페이지
-var curPage = req.params.cur;
+var curPage = 1;
 
 console.log("현재 페이지 : " + curPage, "전체 페이지 : " + totalPageCount);
 
@@ -531,7 +533,7 @@ return
 totalPageCount = data[0].cnt
 
 //현제 페이지
-var curPage = req.params.cur;
+var curPage = 1;
 
 console.log("현재 페이지 : " + curPage, "전체 페이지 : " + totalPageCount);
 
@@ -623,7 +625,7 @@ return
 totalPageCount = data[0].cnt
 
 //현제 페이지
-var curPage = req.params.cur;
+var curPage = 1;
 
 console.log("현재 페이지 : " + curPage, "전체 페이지 : " + totalPageCount);
 
@@ -720,8 +722,6 @@ router.get("/delete/:id", function (req, res) {
             res.redirect('/');
         }
     })
-});
-
 });
 
 router.get("/edit/:id", function (req, res) {
