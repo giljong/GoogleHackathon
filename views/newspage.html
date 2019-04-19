@@ -6,7 +6,9 @@
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <link rel="stylesheet" href="../public/styles.css">
    <link rel="stylesheet" href="../public/comment.css">
-   <script src="../public/comment.js"></script>
+   <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+   <script src="../public/star.js"></script>
+   <script src="../public/jquery-1.11.3.min.js"></script>
 </head>
 <body>
   <h1 style="text-shadow: 2px 2px 2px gray; line-height: 60%;,@import url(http://fonts.googleapis.com/css?family=Oswald); font-family: 'Oswald', sans-serif; font-size : 70px; color:  #148CFF; text-align: center;">2NfU</h1>
@@ -32,18 +34,21 @@
       <div style="text-align: right;">
           <input type="submit" value="댓글 쓰기" />
       </div>
-      <div class="starRev">
-<span class="starR1">별1_왼쪽</span>
-<span class="starR2">별1_오른쪽</span>
-<span class="starR1">별2_왼쪽</span>
-<span class="starR2">별2_오른쪽</span>
-<span class="starR1">별3_왼쪽</span>
-<span class="starR2">별3_오른쪽</span>
-<span class="starR1">별4_왼쪽</span>
-<span class="starR2">별4_오른쪽</span>
-<span class="starR1">별5_왼쪽</span>
-<span class="starR2">별5_오른쪽</span>
-</div>
+      <span class="star-input">
+      	<span class="input">
+          	<input type="radio" name="star-input" value="1" id="p1">
+          	<label for="p1">1</label>
+          	<input type="radio" name="star-input" value="2" id="p2">
+          	<label for="p2">2</label>
+          	<input type="radio" name="star-input" value="3" id="p3">
+          	<label for="p3">3</label>
+          	<input type="radio" name="star-input" value="4" id="p4">
+          	<label for="p4">4</label>
+          	<input type="radio" name="star-input" value="5" id="p5">
+          	<label for="p5">5</label>
+        	</span>
+        	<output for="star-input"><b>0</b>점</output>
+      </span>
   </form>
 
 </body>
