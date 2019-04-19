@@ -51,6 +51,8 @@ router.post('/',(req,res) => {
             }
         })
     }
+}).get('/',(req,res) => {
+    res.render('register.ejs');
 })
 
 module.exports = router;

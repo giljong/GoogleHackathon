@@ -30,4 +30,8 @@ router.post('/',(req,res)=>{
     })
 })
 
+.get('/',(req,res) => {
+    res.render('login.ejs');
+})
+
 module.exports = router;

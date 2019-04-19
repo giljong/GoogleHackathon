@@ -6,7 +6,7 @@ const router = express.Router();
 router.get('/',(req,res) => {
     if(req.session.user !== undefined && req.session.flag === 1)
         res.render('grenroll.ejs');
-    else if(req.session.flag)
+    else if(req.session.flag === 0 && req.session.user !== undefined)
         res.redirect('/auth');
     else
         res.redirect('/');
