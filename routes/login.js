@@ -5,7 +5,7 @@ const moment = require('moment');
 const router = express.Router();
 
 router.post('/',(req,res)=>{
-    const id = req.body.id;
+    const id = req.body.email;
     var tmpPw = req.body.pw;
     const time = moment().format('MMMM Do YYYY, h:mm:ss a');
     const pw = crypto.createHash('sha512').update(tmpPw).digest('base64');
@@ -13,7 +13,7 @@ router.post('/',(req,res)=>{
     req.connection.remoteAddress ||
     req.socket.remoteAddress ||
     req.connection.socket.remoteAddress;
-    db.query('select * from Users where ID = ? and PW = ?' , [id,pw], (err, result) => {
+    db.query('select * from Users where EMAIL = ? and PW = ?' , [id,pw], (err, result) => {
 		if (err) throw err;
         if(result.length === 0){
             res.send('<script type="text/javascript">alert("로그인 실패!(# `)3′");window.location.href="/"</script>');
@@ -22,11 +22,9 @@ router.post('/',(req,res)=>{
         else {
             req.session.flag = 1;
             req.session.user = id;
-            req.session.score = result[0].SCORE;
-            req.session.school = result[0].SCHOOL;
             req.session.save(() => {
                 console.log(time+ ': '+id + ' 로그인 성공 - '+ ip);
-                res.send('<script type="text/javascript">alert("로그인 성공!(｡◝‿◜｡)");window.location.href = "/";</script>');
+                res.send('<script type="text/javascript">alert("로그인 성공!");window.location.href = "/";</script>');
 			})
         }  
     })
