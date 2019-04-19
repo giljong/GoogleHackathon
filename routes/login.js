@@ -26,7 +26,7 @@ router.post('/',(req,res)=>{
                 console.log(time+ ': '+id + ' 로그인 성공 - '+ ip);
                 res.send('<script type="text/javascript">alert("로그인 성공!");window.location.href = "/";</script>');
 			})
-        }  
+        }
     })
 })
 

@@ -3,8 +3,11 @@
 <head>
    <meta charset='utf-8'>
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="../public/styles.css">
+   <link rel="stylesheet" href="../public/style3.css">
+   <link rel="stylesheet" href="../public/style2.css">
+   <link rel="stylesheet" href="../public/style.css">
    <link rel="stylesheet" href="../public/comment.css">
    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
    <script src="../public/star.js"></script>
@@ -22,7 +25,7 @@
     </ul>
   </div>
 
-  <div> //뉴스 내용
+  <div>
 
 
   </div>
@@ -32,6 +35,7 @@
       <div id="addComment">
           <textarea style="addComment-ta" name="memo" rows="7" cols="50"></textarea>
       </div>
+      <input style="float:right; margin-right : 400px; margin-top : 5px;"type="submit" value="댓글 쓰기" />
       <span class="star-input">
         <span class="input">
             <input type="radio" name="star-input" value="1" id="p1">
@@ -46,8 +50,27 @@
             <label for="p5">5</label>
           </span>
       </span>
-      <input type="submit" value="댓글 쓰기" />
   </form>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>아이디</th>
+        <th>내용</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% news.forEach(function (item,index){ %>
+        <tr>
+          <td>
+            <%= item.USER %>
+          </td>
+  <td>
+    <%= item.CONTENTS %>
+  </td>
+  </tr>
+    <% })%>
+  </tbody>
+  </table>
 
 </body>
 <html>

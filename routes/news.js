@@ -5,7 +5,7 @@ var mysql = require('mysql')
 var fs = require('fs')
 var ejs = require('ejs')
 var bodyParser = require('body-parser');
-var db = require('../db/connection');
+var db = require('../db/connetion');
 
 router.use(bodyParser.urlencoded({ extended: false }))
 
@@ -35,7 +35,7 @@ router.get('/culture', function(req,res){
   res.redirect('/news/culture/' + 1);
 });
 
-router.get("/All/:cur", function (req, res) {
+router.get("/all/:cur", function (req, res) {
 
 //페이지당 게시물 수 : 한 페이지 당 10개 게시물
 var page_size = 20;
@@ -135,7 +135,7 @@ var no = "";
 //전체 게시물의 숫자
 var totalPageCount = 0;
 
-var queryString = 'select count(*) as cnt from News'
+var queryString = 'select count(*) as cnt from News WHERE CATEGORIZE = social'
 db.query(queryString, function (error2, data) {
 if (error2) {
 console.log(error2 + "메인 화면 mysql 조회 실패");
@@ -192,7 +192,7 @@ return
 }
 console.log("몇번부터 몇번까지냐~~~~~~~" + no)
 
-var queryString = 'select * from News order by TITLE desc limit ?,?';
+var queryString = 'select * from News WHERE CATEGORIZE = social order by TITLE desc limit ?,?';
 db.query(queryString, [no, page_size], function (error, result) {
 if (error) {
 console.log("페이징 에러" + error);
@@ -223,7 +223,7 @@ var no = "";
 //전체 게시물의 숫자
 var totalPageCount = 0;
 
-var queryString = 'select count(*) as cnt from News'
+var queryString = 'select count(*) as cnt from News WHERE CATEGORIZE = living'
 db.query(queryString, function (error2, data) {
 if (error2) {
 console.log(error2 + "메인 화면 mysql 조회 실패");
@@ -280,7 +280,7 @@ return
 }
 console.log("몇번부터 몇번까지냐~~~~~~~" + no)
 
-var queryString = 'select * from News order by TITLE desc limit ?,?';
+var queryString = 'select * from News WHERE CATEGORIZE = living order by TITLE desc limit ?,?';
 db.query(queryString, [no, page_size], function (error, result) {
 if (error) {
 console.log("페이징 에러" + error);
@@ -311,7 +311,7 @@ var no = "";
 //전체 게시물의 숫자
 var totalPageCount = 0;
 
-var queryString = 'select count(*) as cnt from News'
+var queryString = 'select count(*) as cnt from News WHERE CATEGORIZE = it'
 db.query(queryString, function (error2, data) {
 if (error2) {
 console.log(error2 + "메인 화면 mysql 조회 실패");
@@ -368,7 +368,7 @@ return
 }
 console.log("몇번부터 몇번까지냐~~~~~~~" + no)
 
-var queryString = 'select * from News order by TITLE desc limit ?,?';
+var queryString = 'select * from News WHERE CATEGORIZE = it order by TITLE desc limit ?,?';
 db.query(queryString, [no, page_size], function (error, result) {
 if (error) {
 console.log("페이징 에러" + error);
@@ -400,7 +400,7 @@ var no = "";
 //전체 게시물의 숫자
 var totalPageCount = 0;
 
-var queryString = 'select count(*) as cnt from News'
+var queryString = 'select count(*) as cnt from News WHERE CATEGORIZE = culture'
 db.query(queryString, function (error2, data) {
 if (error2) {
 console.log(error2 + "메인 화면 mysql 조회 실패");
@@ -457,7 +457,7 @@ return
 }
 console.log("몇번부터 몇번까지냐~~~~~~~" + no)
 
-var queryString = 'select * from News order by TITLE desc limit ?,?';
+var queryString = 'select * from WHERE CATEGORIZE = culture News order by TITLE desc limit ?,?';
 db.query(queryString, [no, page_size], function (error, result) {
 if (error) {
 console.log("페이징 에러" + error);
@@ -489,7 +489,7 @@ var no = "";
 //전체 게시물의 숫자
 var totalPageCount = 0;
 
-var queryString = 'select count(*) as cnt from News'
+var queryString = 'select count(*) as cnt from News WHERE CATEGORIZE = sports'
 db.query(queryString, function (error2, data) {
 if (error2) {
 console.log(error2 + "메인 화면 mysql 조회 실패");
@@ -546,7 +546,7 @@ return
 }
 console.log("몇번부터 몇번까지냐~~~~~~~" + no)
 
-var queryString = 'select * from News order by TITLE desc limit ?,?';
+var queryString = 'select * from News WHERE CATEGORIZE = sports order by TITLE desc limit ?,?';
 db.query(queryString, [no, page_size], function (error, result) {
 if (error) {
 console.log("페이징 에러" + error);
@@ -660,14 +660,14 @@ pasing: result2
 router.get("/", function (req, res) {
 console.log("메인화면")
 //main 으로 들어오면 바로 페이징 처리
-res.redirect('/news/All/' + 1);
+res.redirect('/news/all/' + 1);
 
 });
 
 router.get("/all", function (req, res) {
 console.log("메인화면")
 //main 으로 들어오면 바로 페이징 처리
-res.redirect('/news/All/' + 1);
+res.redirect('/news/all/' + 1);
 
 });
 
@@ -679,27 +679,8 @@ db.query('delete from News where id = ?', [req.params.id], function () {
 res.redirect('/main')
 });
 
-})
-//삽입 페이지
-router.get("/insert", function (req, res) {
-console.log("삽입 페이지 나와라")
+});
 
-fs.readFile('insert.html', 'utf-8', function (error, data) {
-res.send(data)
-})
-
-})
-//삽입 포스터 데이터
-router.post("/insert", function (req, res) {
-console.log("삽입 포스트 데이터 진행")
-var body = req.body;
-db.query('insert into News(TITLE,CONTENTS,CATEGORIZE) values (?,?,?)', [body.name, body.num, body.section], function () {
-//응답
-res.redirect('/main');
-})
-
-})
-//수정 페이지
 router.get("/edit/:id", function (req, res) {
 console.log("수정 진행")
 
