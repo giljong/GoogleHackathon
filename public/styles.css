@@ -59,7 +59,7 @@
   font-size: 20px;
   text-transform: uppercase;
   text-decoration: none;
-  color: #148CFF;
+  color: #444444;
   -webkit-transition: all .2s ease;
   -moz-transition: all .2s ease;
   -ms-transition: all .2s ease;
@@ -69,7 +69,7 @@
 #cssmenu > ul > li > a:hover,
 #cssmenu > ul > li:hover > a,
 #cssmenu > ul > li.active > a {
-  color: #444444;
+  color: #148CFF;
 }
 #cssmenu #menu-indicator {
   position: absolute;
@@ -113,11 +113,11 @@
   font-size: 14px;
   text-transform: uppercase;
   text-decoration: none;
-  color: #fd8a17;
+  color: #148CFF;
   background: url('images/bg.png');
 }
 #cssmenu.small-screen #menu-button.menu-opened {
-  color: #444444;
+  color: #148CFF;
 }
 #cssmenu.small-screen #menu-button:after {
   content: "";
@@ -128,14 +128,14 @@
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;
   box-sizing: content-box;
-  border-top: 2px solid #fd8a17;
-  border-bottom: 2px solid #fd8a17;
+  border-top: 2px solid #444444;
+  border-bottom: 2px solid #444444;
   width: 18px;
   height: 3px;
 }
 #cssmenu.small-screen #menu-button.menu-opened:after {
-  border-top: 2px solid #444444;
-  border-bottom: 2px solid #444444;
+  border-top: 2px solid #148CFF;
+  border-bottom: 2px solid #148CFF;
 }
 #cssmenu.small-screen #menu-button:before {
   content: "";
@@ -145,10 +145,10 @@
   display: block;
   width: 18px;
   height: 2px;
-  background: #fd8a17;
+  background: #444444;
 }
 #cssmenu.small-screen #menu-button.menu-opened:before {
-  background: #444444;
+  background: #148CFF;
 }
 #cssmenu.small-screen #menu-indicator {
   display: none;
