@@ -20,7 +20,36 @@
       <li><a href='#'>News</a></li>
     </ul>
   </div>
+  <form name="smartEditorText" method="POST" action="/text/insertText">
+      <textarea rows="13" cols="40" id="textTest" name="textTest"></textarea>
+      <button type = "submit" onclick="submitContents()">전송</button>
+  </form>
 
+
+
+  <script src="../smarteditor2/workspace/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+  <!— 파일 디렉토리에 알맞게 변경 —>
+
+  <script type="text/javascript">
+  var oEditors = [];
+
+      // Editor Setting
+      nhn.husky.EZCreator.createInIFrame({ oAppRef : oEditors,
+          elPlaceHolder : "textTest", // 에디터를 적용할 textarea ID에 맞게 변경
+          sSkinURI : "../smarteditor2/workspace/SmartEditor2Skin.html", // Editor HTML파일 위치로 변경
+          fCreator : "createSEditor2", // SE2BasicCreator.js 메소드명으로 변경하면 안된다.
+          htParams : { // 툴바 사용 여부 (true/false)
+              bUseToolbar : true, // 입력창 크기 조절바 사용 여부 (true/false)
+              bUseVerticalResizer : true, // 모드 탭(Editor|HTML|TEXT) 사용 여부 (true/false)
+              bUseModeChanger : true // 전송버튼 클릭이벤트
+          }
+      });
+
+  function submitContents() {
+          // 에디터의 내용이 textarea에 적용
+          oEditors.getById["class_tutorIntroduce"].exec("UPDATE_CONTENTS_FIELD", []);
+  }
+  </script>
 
   <div class="dim-layer" style="display: block;">
   <div class="dimBg">
@@ -46,11 +75,64 @@
     &nbsp5. 객관주의 저널리즘<br>
     기자의 주관을 배제하고 최대한 객관적 시각에서 기사를 쓸 것.
   <div class="btn-r"><a style="float:left;">&nbsp※위 사항을 어길 시 패널티가 있을 수 있습니다.</a>
-  <a class="btn-layerClose" href="https://www.blogger.com/blogger.g?blogID=7732836231814138589#">닫기</a>
+  <a class="btn-layerClose">닫기 </a>
                   </div>
               </div>
   </div>
   </div>
   </div>
+  <script>function setCookie(name, value, expiredays){
+   var todayDate = new Date();
+    todayDate.setDate (todayDate.getDate() + expiredays);
+    document.cookie = name + "=" + escape(value) + "; path=/; expires=" + todayDate.toGMTString() + ";";
+  }
+
+
+  $(function(){
+
+   cookiedata = document.cookie;
+
+   if(cookiedata.indexOf('notice_layer=done') < 0){  //오늘 하루 이 창을 열지 않음 클릭 체크
+        layer_popup("#notice_layer");
+   }
+
+
+   });
+
+     function layer_popup(el){
+
+         var $el = $(el);        //레이어의 id를 $el 변수에 저장
+         var isDim = $el.prev().hasClass('dimBg');   //dimmed 레이어를 감지하기 위한 boolean 변수
+
+         isDim ? $('.dim-layer').fadeIn() : $el.fadeIn();
+
+         var $elWidth = ~~($el.outerWidth()),
+             $elHeight = ~~($el.outerHeight()),
+             docWidth = $(document).width(),
+             docHeight = $(document).height();
+
+         // 화면의 중앙에 레이어를 띄운다.
+         if ($elHeight < docHeight || $elWidth < docWidth) {
+             $el.css({
+                 marginTop: -$elHeight /2,
+                 marginLeft: -$elWidth/2
+             })
+         } else {
+             $el.css({top: 0, left: 0});
+         }
+
+         $el.find('a.btn-layerClose').click(function(){
+           setCookie("notice_layer", "done", 1);
+             isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
+             return false;
+         });
+
+         $('.layer .dimBg').click(function(){
+             $('.dim-layer').fadeOut();
+             return false;
+         });
+
+     }
+</script>
 
   </body>
