@@ -8,9 +8,8 @@ const randomstring = require('randomstring');
 router.get('/', (req,res) => {
     if(!(req.session.user === undefined) && req.session.flag === 0){
                 res.render('auth.ejs',{
-            id:req.session.user,
-            school : req.session.school
-        });
+                    id : req.session.user
+         });
     }
     else
         res.redirect('/');
@@ -31,7 +30,7 @@ router.get('/', (req,res) => {
         req.connection.socket.remoteAddress;
         if(!(req.body.key===undefined)){
             db.query('select AUTHKEY from Users where ID = ?',req.session.user,(err,result) => {
-                if(err) throw err;
+                if(err) console.log(err);
                 if((key === result[0].AUTHKEY)){
                     db.query('update Users set FLAG=1 where ID = ?',req.session.user);
                     req.session.flag = 1;
