@@ -5,7 +5,7 @@ var mysql = require('mysql')
 var fs = require('fs')
 var ejs = require('ejs')
 var bodyParser = require('body-parser');
-var db = require('../db/connection');
+var db = require('../db/connetion');
 
 router.use(bodyParser.urlencoded({ extended: false }))
 
