@@ -66,7 +66,7 @@ router.get("/All/:cur", function (req, res) {
 //전체 게시물의 숫자
     var totalPageCount = 0;
 
-    var queryString = 'select count(*) as cnt from News'
+    var queryString = 'select count(*) as cnt from News where flag = 2'
     db.query(queryString, function (error2, data) {
     if (error2) {
         console.log(error2 + "메인 화면 mysql 조회 실패");
@@ -122,7 +122,7 @@ var result2 = {
     }
     console.log("몇번부터 몇번까지냐~~~~~~~" + no)
 
-    var queryString = 'select * from News order by SCORE desc limit ?,?';
+    var queryString = 'select * from News where flag = 2 order by SCORE desc limit ?,?';
     db.query(queryString, [no, page_size], function (error, result) {
     if (error) {
         console.log("페이징 에러" + error);
@@ -157,7 +157,7 @@ var no = "";
 //전체 게시물의 숫자
 var totalPageCount = 0;
 
-var queryString = 'select count(*) as cnt from News WHERE CATEGORIZE = social'
+var queryString = 'select count(*) as cnt from News WHERE CATEGORIZE = social and flag = 2'
 db.query(queryString, function (error2, data) {
 if (error2) {
 console.log(error2 + "메인 화면 mysql 조회 실패");
@@ -214,7 +214,7 @@ return
 }
 console.log("몇번부터 몇번까지냐~~~~~~~" + no)
 
-var queryString = 'select * from News WHERE CATEGORIZE = social order by TITLE desc limit ?,?';
+var queryString = 'select * from News WHERE CATEGORIZE = social and flag = 2 order by TITLE desc limit ?,?';
 db.query(queryString, [no, page_size], function (error, result) {
 if (error) {
 console.log("페이징 에러" + error);
@@ -248,7 +248,7 @@ var no = "";
 //전체 게시물의 숫자
 var totalPageCount = 0;
 
-var queryString = 'select count(*) as cnt from News WHERE CATEGORIZE = living'
+var queryString = 'select count(*) as cnt from News WHERE CATEGORIZE = living and flag = 2'
 db.query(queryString, function (error2, data) {
 if (error2) {
 console.log(error2 + "메인 화면 mysql 조회 실패");
@@ -305,7 +305,7 @@ return
 }
 console.log("몇번부터 몇번까지냐~~~~~~~" + no)
 
-var queryString = 'select * from News WHERE CATEGORIZE = living order by TITLE desc limit ?,?';
+var queryString = 'select * from News WHERE CATEGORIZE = living and flag = 2 order by TITLE desc limit ?,?';
 db.query(queryString, [no, page_size], function (error, result) {
 if (error) {
 console.log("페이징 에러" + error);
@@ -339,7 +339,7 @@ var no = "";
 //전체 게시물의 숫자
 var totalPageCount = 0;
 
-var queryString = 'select count(*) as cnt from News WHERE CATEGORIZE = it'
+var queryString = 'select count(*) as cnt from News WHERE CATEGORIZE = it and flag = 2'
 db.query(queryString, function (error2, data) {
 if (error2) {
 console.log(error2 + "메인 화면 mysql 조회 실패");
@@ -396,7 +396,7 @@ return
 }
 console.log("몇번부터 몇번까지냐~~~~~~~" + no)
 
-var queryString = 'select * from News WHERE CATEGORIZE = it order by TITLE desc limit ?,?';
+var queryString = 'select * from News WHERE CATEGORIZE = it and flag = 2 order by TITLE desc limit ?,?';
 db.query(queryString, [no, page_size], function (error, result) {
 if (error) {
 console.log("페이징 에러" + error);
@@ -431,7 +431,7 @@ var no = "";
 //전체 게시물의 숫자
 var totalPageCount = 0;
 
-var queryString = 'select count(*) as cnt from News WHERE CATEGORIZE = culture'
+var queryString = 'select count(*) as cnt from News WHERE CATEGORIZE = culture and flag = 2'
 db.query(queryString, function (error2, data) {
 if (error2) {
 console.log(error2 + "메인 화면 mysql 조회 실패");
@@ -488,7 +488,7 @@ return
 }
 console.log("몇번부터 몇번까지냐~~~~~~~" + no)
 
-var queryString = 'select * from WHERE CATEGORIZE = culture News order by TITLE desc limit ?,?';
+var queryString = 'select * from News WHERE CATEGORIZE = culture and flag = 2order by TITLE desc limit ?,?';
 db.query(queryString, [no, page_size], function (error, result) {
 if (error) {
 console.log("페이징 에러" + error);
@@ -523,7 +523,7 @@ var no = "";
 //전체 게시물의 숫자
 var totalPageCount = 0;
 
-var queryString = 'select count(*) as cnt from News WHERE CATEGORIZE = sports'
+var queryString = 'select count(*) as cnt from News WHERE CATEGORIZE = sports and flag = 2'
 db.query(queryString, function (error2, data) {
 if (error2) {
 console.log(error2 + "메인 화면 mysql 조회 실패");
@@ -580,7 +580,7 @@ return
 }
 console.log("몇번부터 몇번까지냐~~~~~~~" + no)
 
-var queryString = 'select * from News WHERE CATEGORIZE = sports order by TITLE desc limit ?,?';
+var queryString = 'select * from News WHERE CATEGORIZE = sports and flag = 2 order by TITLE desc limit ?,?';
 db.query(queryString, [no, page_size], function (error, result) {
 if (error) {
 console.log("페이징 에러" + error);
@@ -615,7 +615,7 @@ var no = "";
 //전체 게시물의 숫자
 var totalPageCount = 0;
 
-var queryString = 'select count(*) as cnt from News'
+var queryString = 'select count(*) as cnt from News where flag = 2'
 db.query(queryString, function (error2, data) {
 if (error2) {
 console.log(error2 + "메인 화면 mysql 조회 실패");
@@ -672,7 +672,7 @@ return
 }
 console.log("몇번부터 몇번까지냐~~~~~~~" + no)
 
-var queryString = 'select * from News order by TITLE desc limit ?,?';
+var queryString = 'select * from News where flag = 2 order by TITLE desc limit ?,?';
 db.query(queryString, [no, page_size], function (error, result) {
 if (error) {
 console.log("페이징 에러" + error);

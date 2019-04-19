@@ -41,3 +41,5 @@ router.get('/',(req,res) => {
     else
         res.redirect('/');
 })
+
+module.exports = router;

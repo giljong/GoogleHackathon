@@ -11,6 +11,12 @@ router.get('/:num',(req,res) => {
             if(err) console.log(err);
             db.query('select * from comments where id = ? ordey by asc',req.params.num,(error,results) => {
                 if(error) console.log(error);
+                if(results.length === 0){
+                    res.render('newspage.ejs',{
+                        contents : result[0].contents,
+                        comments : false
+                    })
+                }
                 res.render('newspage.ejs',{
                     contents : result[0].contents,
                     comments : results,
