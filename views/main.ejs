@@ -349,33 +349,25 @@
 <h2>All News</h2>
 <p>All kinds of News</p>
 
-<table class="table table-striped">
+<table style="width : 1300px;"class="table table-striped">
 <thead>
 <tr>
-<th>기사 번호</th>
-<th>제목</th>
+<th style="width : 200px;">우수 언론 점수</th>
+<th style="width : 800px;">제목</th>
 <th>분류</th>
-<th>수정</th>
-<th>삭제</th>
 </tr>
 </thead>
 <tbody>
 <% data.forEach(function (item,index){ %>
 <tr>
 <td>
-  <%= item.ID %>
+  <%= item.SCORE %>
 </td>
 <td>
 <a href='/detail/<%= item.ID %>'><%= item.TITLE %></a>
 </td>
 <td>
   <%= item.CATEGORIZE %>
-</td>
-<td>
-<a href="/delete/<%= item.ID %>">수정</a>
-</td>
-<td>
-<a href="/edit/<%= item.ID %>">삭제</a>
 </td>
 </tr>
   <% })%>
