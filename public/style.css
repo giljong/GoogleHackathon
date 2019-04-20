@@ -68,7 +68,7 @@
 #cssmenu > ul > li > a:hover,
 #cssmenu > ul > li:hover > a,
 #cssmenu > ul > li.active > a {
-  color: #148CFF;
+  color: grey;
 }
 #cssmenu #menu-indicator {
   position: absolute;
