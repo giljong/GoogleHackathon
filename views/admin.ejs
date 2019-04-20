@@ -354,19 +354,19 @@
 <% for (var i = 0; i < news.length; i++){ %>
 <tr>
 <td>
-  <%= news[i].CNT %>
+  <%=news[i].CNT%>
 </td>
 <td>
-  <a href='/detail/<%= news.ID %>'><%= news.TITLE %>></a>
+  <a href='/detail/<%=news[i].ID%>'><%=news[i].TITLE%></a>
 </td>
 <td>
-  <%= news[i].CATEGORIZE %>
+  <%=news[i].CATEGORIZE%>
 </td>
 <td>
-  <a href='/admin/<%= news[i].ID %>/Good'>Good</a>
+  <a href='/admin/<%=news[i].ID%>/Good'>Good</a>
 </td>
 <td>
-  <a href='/admin/<%= news[i].ID %>/Bad'>Bad</a>
+  <a href='/admin/<%=news[i].ID%>/Bad'>Bad</a>
 </td>
 </tr>
   <% }%>

@@ -38,14 +38,8 @@ router.get('/:num',(req,res) => {
         db.query('select * from Comments where user = ? and id = ?',[req.session.user,req.params.num],(err,result) =>{
             if(err) console.log(err);
             if(result.length === 0){
-                db.query('insert into Comments (user,id,contents) values(?,?,?)',[req.session.user,req.params.num,req.body.title]);
-                db.query('select * from News where id = ?',req.params.num,(error,results) => {
-                    if(error) console.log(error)
-                    sum = results[0].hap + req.body.score;
-                    cnt = results[0].cnt+1;
-                    score = sum/cnt;
-                    db.query('update News set hap = ?, cnt = ?, score = ?',[sum,cnt,score]);
-                })
+                db.query('insert into Comments (user,id,contents,score) values(?,?,?,?)',[req.session.user,req.params.num,req.body.contents,req.body.score]);
+                res.redirect('/');
             }
         })
     }
@@ -55,10 +49,19 @@ router.get('/:num',(req,res) => {
         if(result.length === 0){
             db.query('update News set cnt = cnt+1 where id = ?',req.params.num);
             db.query('insert into Report (id,user) values(?,?)',[req.params.num,req.session.user])
-            res.send('<script type="text/javascript">alert("기사에 대한 신고가 완료되었습니다.");window.location.href="/detail";</script>')
+            db.query('select * from News where id = ?',(error,results) => {
+                if(error) console.log
+                if(results[0].cnt >=100){
+                    db.query('update News set flag=1 where id = ?',req.params.num);
+                    res.send('<script type="text/javascript">alert("기사에 대한 신고가 완료되었습니다.");window.location.href="/detail";</script>')
+                }
+                else{
+                    res.send('<script type="text/javascript">alert("기사에 대한 신고가 완료되었습니다.");window.location.href="/detail";</script>')
+                }
+            })
         }
         else{
-            res.send
+            res.send('<script type="text/javascript">alert("기사에 대한 신고를 이미 하였습니다.");window.location.href="/detail";</script>')
         }
     })
 })

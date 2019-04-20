@@ -29,9 +29,30 @@
     </ul>
   </div>
   <br>
+  
   <div class="container">
-    <h2>기사 내용</h2>
+    
     <form action="/wrnews" method="post">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+        <span class="input-group-text">기사 제목</span>
+      </div>
+      <input type="text" class="form-control" placeholder="기사제목" name="title">
+    </div>
+    <div>
+        <label>카테고리</label>
+        <select name="categorize" required>
+            <option disabled selected>분야를 선택하세요</option>
+            <option value="social">social</option>
+            <option value="sports">sports</option>
+            <option value="living">living</option>
+            <option value="world">world</option>
+            <option value="it">it</option>
+            <option value="culture">culture</option>
+        </select>
+    </div>
+
+      <h2>기사 내용</h2>
       <div class="form-group">
         <textarea class="form-control" rows=18 id="comment" name="contents"></textarea>
       </div>

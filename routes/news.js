@@ -3,10 +3,9 @@ var express = require('express')
 var router = express.Router()
 var fs = require('fs')
 var db = require('../db/connetion');
-var ejs = require('ejs');
-var bodyParser = require('body-parser');
+const path = require('path');
+const ejs = require('ejs');
 
-router.use(bodyParser.urlencoded({ extended: false }));
 
 //게시판 페이징
 
@@ -76,7 +75,8 @@ router.get("/All/:cur", function (req, res) {
     totalPageCount = data[0].cnt
 
 //현제 페이지
-    var curPage = 1;
+    var curPage = req.params.cur;
+
     console.log("현재 페이지 : " + curPage, "전체 페이지 : " + totalPageCount);
 
 
@@ -114,7 +114,7 @@ var result2 = {
     };
 
 
-    fs.readFile('/Users/wnwdyd/Documents/GitHub/GoogleHackathon/views/main.ejs', 'utf-8', function (error, data) {
+    fs.readFile(path.resolve(__dirname,"../views/main.ejs"), 'utf-8', function (error, data) {
 
     if (error) {
         console.log("ejs오류" + error);
@@ -167,7 +167,7 @@ return
 totalPageCount = data[0].cnt
 
 //현제 페이지
-var curPage = 1;
+var curPage = req.params.cur;
 
 console.log("현재 페이지 : " + curPage, "전체 페이지 : " + totalPageCount);
 
@@ -206,7 +206,7 @@ var result2 = {
 };
 
 
-fs.readFile('/Users/wnwdyd/Documents/GitHub/GoogleHackathon/views/social.ejs', 'utf-8', function (error, data) {
+fs.readFile(path.resolve(__dirname,"../views/social.ejs"), 'utf-8', function (error, data) {
 
 if (error) {
 console.log("ejs오류" + error);
@@ -258,7 +258,7 @@ return
 totalPageCount = data[0].cnt
 
 //현제 페이지
-var curPage = 1;
+var curPage = req.params.cur;
 
 console.log("현재 페이지 : " + curPage, "전체 페이지 : " + totalPageCount);
 
@@ -297,7 +297,7 @@ var result2 = {
 };
 
 
-fs.readFile('/Users/wnwdyd/Documents/GitHub/GoogleHackathon/views/living.ejs', 'utf-8', function (error, data) {
+fs.readFile(path.resolve(__dirname,"../views/living.ejs"), 'utf-8', function (error, data) {
 
 if (error) {
 console.log("ejs오류" + error);
@@ -349,7 +349,7 @@ return
 totalPageCount = data[0].cnt
 
 //현제 페이지
-var curPage = 1;
+var curPage = req.params.cur;
 
 console.log("현재 페이지 : " + curPage, "전체 페이지 : " + totalPageCount);
 
@@ -388,7 +388,7 @@ var result2 = {
 };
 
 
-fs.readFile('/Users/wnwdyd/Documents/GitHub/GoogleHackathon/views/it.ejs', 'utf-8', function (error, data) {
+fs.readFile(path.resolve(__dirname,"../views/it.ejs"), 'utf-8', function (error, data) {
 
 if (error) {
 console.log("ejs오류" + error);
@@ -441,7 +441,7 @@ return
 totalPageCount = data[0].cnt
 
 //현제 페이지
-var curPage = 1;
+var curPage = req.params.cur;
 
 console.log("현재 페이지 : " + curPage, "전체 페이지 : " + totalPageCount);
 
@@ -480,7 +480,7 @@ var result2 = {
 };
 
 
-fs.readFile('/Users/wnwdyd/Documents/GitHub/GoogleHackathon/views/culture.ejs', 'utf-8', function (error, data) {
+fs.readFile(path.resolve(__dirname,"../views/culture.ejs"), 'utf-8', function (error, data) {
 
 if (error) {
 console.log("ejs오류" + error);
@@ -533,7 +533,7 @@ return
 totalPageCount = data[0].cnt
 
 //현제 페이지
-var curPage = 1;
+var curPage = req.params.cur;
 
 console.log("현재 페이지 : " + curPage, "전체 페이지 : " + totalPageCount);
 
@@ -572,7 +572,7 @@ var result2 = {
 };
 
 
-fs.readFile('/Users/wnwdyd/Documents/GitHub/GoogleHackathon/views/sports.ejs', 'utf-8', function (error, data) {
+fs.readFile(path.resolve(__dirname,"../views/sports.ejs"), 'utf-8', function (error, data) {
 
 if (error) {
 console.log("ejs오류" + error);
@@ -625,7 +625,7 @@ return
 totalPageCount = data[0].cnt
 
 //현제 페이지
-var curPage = 1;
+var curPage = req.params.cur;
 
 console.log("현재 페이지 : " + curPage, "전체 페이지 : " + totalPageCount);
 
@@ -664,7 +664,7 @@ var result2 = {
 };
 
 
-fs.readFile('/Users/wnwdyd/Documents/GitHub/GoogleHackathon/views/world.ejs', 'utf-8', function (error, data) {
+fs.readFile(path.resolve(__dirname,"../views/world.ejs"), 'utf-8', function (error, data) {
 
 if (error) {
 console.log("ejs오류" + error);
@@ -723,6 +723,7 @@ router.get("/delete/:id", function (req, res) {
         }
     })
 });
+
 
 router.get("/edit/:id", function (req, res) {
     db.query('select * from News where ID = ?',req.params.id,(err,result) => {

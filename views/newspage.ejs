@@ -5,13 +5,13 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
    <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="stylesheet" href="../public/style.css">
-   <link rel="stylesheet" href="../public/style2.css">
-   <link rel="stylesheet" href="../public/style3.css">
-   <link rel="stylesheet" href="../public/comment.css">
+   <link rel="stylesheet" href="../style.css">
+   <link rel="stylesheet" href="../style2.css">
+   <link rel="stylesheet" href="../style3.css">
+   <link rel="stylesheet" href="comment.css">
    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-   <script src="../public/star.js"></script>
-   <script src="../public/jquery-1.11.3.min.js"></script>
+   <script src="star.js"></script>
+   <script src="jquery-1.11.3.min.js"></script>
 </head>
 <body>
   <h1 style="text-shadow: 2px 2px 2px gray; line-height: 60%;,@import url(http://fonts.googleapis.com/css?family=Oswald); font-family: 'Oswald', sans-serif; font-size : 70px; color:  #148CFF; text-align: center;">2NfU</h1>
@@ -24,15 +24,15 @@
       <li><a href='#'>News</a></li>
     </ul>
   </div>
-  <a href="/detail/<%=contents[0].ID%>/report">
+  <a href="/detail/<%=contents[0].ID%>/report"> </a>
   <div>
-    <%=contents%>
+    <%=contents[0].CONTENTS%>
   </div>
 
 
   <form id="addCommentForm" style="margin: 10px 0;" method="post">
       <div id="addComment">
-          <textarea style="addComment-ta" name="memo" rows="7" cols="50"></textarea>
+          <textarea style="addComment-ta" name="contents" rows="7" cols="50"></textarea>
       </div>
       <div>
         <label>평점</label>
@@ -59,10 +59,10 @@
       <% for (var i = 0; i < len; i++){ %>
         <tr>
           <td>
-            <%= comments[i].USER %>
+            <%=comments[i].USER%>
           </td>
   <td>
-    <%= comments[i].CONTENTS %>
+    <%=comments[i].CONTENTS%>
   </td>
   </tr>
     <% }%>
