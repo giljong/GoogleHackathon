@@ -4,7 +4,7 @@ const path = require('path');
 const app = express();
 const session = require('express-session');
 const indexRouter = require('./routes/index');
-//const myPageRouter = require('./routes/mypage');
+const myPageRouter = require('./routes/mypage');
 const loginRouter = require('./routes/login');
 const authRouter = require('./routes/auth');
 const registerRouter = require('./routes/register');
@@ -15,7 +15,7 @@ const writeRouter = require('./routes/wrnews');
 const schedule = require('node-schedule');
 const productRouter = require('./routes/news');
 const detailRouter = require('./routes/detail');
-const myPageRouter = require('./routes/mypage');
+const adminRouter = require('./routes/admin');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
@@ -27,7 +27,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/', indexRouter);
-//app.use('/mypage',myPageRouter);
+app.use('/admin', adminRouter);
+app.use('/mypage',myPageRouter);
 app.use('/wrnews',writeRouter);
 app.use('/login',loginRouter);
 app.use('/auth',authRouter);

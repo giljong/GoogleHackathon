@@ -33,13 +33,12 @@ router.get('/',(req,res) => {
         res.redirect('/');
 }).post('/:num',(req,res) => {
     if(req.session.user !== undefined && req.session.flag === 1){
-        db.query('insert into Mail (title,contents,fromuser,touser) values (?,?,?,?)',[title,req.body.contents,req.session.user,from]);  
-        res.send('<script type="text/javascript">alert("메일발송완료");window.location.href="/";</script>') 
+        db.query('insert into Mail (title,contents,fromuser,touser) values (?,?,?,?)',[title,req.body.contents,req.session.user,from]);
+        res.send('<script type="text/javascript">alert("메일발송완료");window.location.href="/";</script>')
     }
     else if(req.session.flag === 0 && req.session.user !== undefined)
         res.redirect('/auth');
     else
         res.redirect('/');
-})
-
+});
 module.exports = router;
