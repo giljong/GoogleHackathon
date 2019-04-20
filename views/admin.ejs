@@ -329,24 +329,13 @@
 <div id='cssmenu' style="margin-bottom: 10px;">
 <ul>
    <li><a href='/'>Main</a></li>
-   <li class="active"><a href='/news/all'>News</a></li>
+   <li><a href='/news/all'>News</a></li>
    <li><a href='#'>Enrollment</a></li>
    <li><a href='#'>Press</a></li>
    <li><a href='/mypage'>My Page</a></li>
    <li><a href='/fake'>Fakes</a></li>
    <li><a href='/ranking'>Ranking</a></li>
-   <li><a href='/admin'>admin</a></li>
-</ul>
-</div>
-<div id='cssmenu2' style="width:120px; margin-right: 10px; height:480px;float:left">
-<ul>
-  <li class="active"><a href='/news/all'>All</a></li>
-  <li><a href='/news/social'>Social</a></li>
-  <li><a href='/news/sports'>Sports</a></li>
-  <li><a href='/news/living'>Living</a></li>
-  <li><a href='/news/world'>World</a></li>
-  <li><a href='/news/it'>It</a></li>
-  <li><a href='/news/culture'>Culture</a></li>
+   <li class="active"><a href='/admin'>admin</a></li>
 </ul>
 </div>
 <div class="container">
@@ -356,104 +345,31 @@
 <table style="width : 1300px;"class="table table-striped">
 <thead>
 <tr>
-<th style="width : 200px;">우수 언론 점수</th>
+<th style="width : 200px;">신고 횟수</th>
 <th style="width : 800px;">제목</th>
 <th>분류</th>
 </tr>
 </thead>
 <tbody>
-<% data.forEach(function (item,index){ %>
+<% for (var i = 0; i < news.length; i++){ %>
 <tr>
 <td>
-  <%= item.SCORE %>
+  <%= news[i].CNT %>
 </td>
 <td>
-<a href='/detail/<%= item.ID %>'><%= item.TITLE %></a>
+  <a href='/detail/<%= news.ID %>'><%= news.TITLE %>></a>
 </td>
 <td>
-  <%= item.CATEGORIZE %>
+  <%= news[i].CATEGORIZE %>
+</td>
+<td>
+  <a href='/admin/<%= news[i].ID %>/Good'>Good</a>
+</td>
+<td>
+  <a href='/admin/<%= news[i].ID %>/Bad'>Bad</a>
 </td>
 </tr>
-  <% })%>
+  <% }%>
 </tbody>
 </table>
-</div>
-
-
-<br>
-<br>
-
-
-<div class="container">
-<ul class="pager">
-
-
-
-<%
-var curSet = pasing.curSet
-var endPage = pasing.endPage
-var startPage = pasing.startPage
-var totalSet = pasing.totalSet
-var totalPage = pasing.totalPage
-var page_list_size = pasing.page_list_size
-var page_size = pasing.page_size
-var curPage = pasing.curPage
-%>
-
-
-<%
-if(curSet > 1){
-%>
-
-<li value=(startPage -1) class="previous">
-<a href='/pasing/<%= ( startPage - 1) %>'>이전페이지</a>
-</li>
-
-<%
-}
-%>
-
-
-<%
-for(var i = startPage; i <= endPage; i++){
-if(i > totalPage){break;}
-
-if(i == curPage){
-%>
-<li value=<%= i %> class='' >
-<a href='/pasing/<%= i %>'>
-<%= i %>
-</a>
-</li>
-
-<%
-}else{
-%>
-
-<li value=<%= i %> class='active' >
-<a href='/pasing/<%= i %>'>
-<%= i %>
-</a>
-</li>
-
-
-<%
-}
-%>
-
-<%
-}
-%>
-
-<%
-if(curSet < totalSet){
-%>
-<li value=( endPage + 1) class="next">
-<a href='/pasing/<%= ( endPage + 1) %>'>다음페이지</a>
-</li>
-<%
-}
-%>
-
-</ul>
 </div>

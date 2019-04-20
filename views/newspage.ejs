@@ -24,9 +24,9 @@
       <li><a href='#'>News</a></li>
     </ul>
   </div>
-
+  <a href="/detail/<%=contents[0].ID%>/report">
   <div>
-    <%= contents%>
+    <%=contents%>
   </div>
 
 
@@ -38,11 +38,11 @@
         <label>평점</label>
         <select name="score" required>
             <option disabled selected>점수를 선택하세요</option>
-            <option value="1">★☆☆☆☆</option>
-            <option value="2">★★☆☆☆</option>
-            <option value="3">★★★☆☆</option>
-            <option value="4">★★★★☆</option>
-            <option value="5">★★★★★</option>
+            <option value=1>★☆☆☆☆</option>
+            <option value=2>★★☆☆☆</option>
+            <option value=3>★★★☆☆</option>
+            <option value=4>★★★★☆</option>
+            <option value=5>★★★★★</option>
         </select>
     </div>
       <input type="submit" value="댓글 쓰기" />
@@ -70,5 +70,6 @@
   </table>
   <% }else{%>
     <tr>댓글이 없습니다</tr>
+    <% }%>
 </body>
 <html>
