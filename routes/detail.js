@@ -13,15 +13,17 @@ router.get('/:num',(req,res) => {
                 if(error) console.log(error);
                 if(results.length === 0){
                     res.render('newspage.ejs',{
-                        contents : result[0].contents,
+                        contents : result,
                         comments : false
                     })
                 }
-                res.render('newspage.ejs',{
-                    contents : result[0].contents,
-                    comments : results,
-                    len : results.length
-                })
+                else{
+                    res.render('newspage.ejs',{
+                        contents : result,
+                        comments : results,
+                        len : results.length
+                    })
+                }   
             })
         })
     }
@@ -47,5 +49,17 @@ router.get('/:num',(req,res) => {
             }
         })
     }
+}).get('/:num/report',(req,res) => {
+    db.query('select * from Report where id = ? and user = ?',[req.params.num,req.session.user],(err,result) => {
+        if(err) console.log(err);
+        if(result.length === 0){
+            db.query('update News set cnt = cnt+1 where id = ?',req.params.num);
+            db.query('insert into Report (id,user) values(?,?)',[req.params.num,req.session.user])
+            res.send('<script type="text/javascript">alert("기사에 대한 신고가 완료되었습니다.");window.location.href="/detail";</script>')
+        }
+        else{
+            res.send
+        }
+    })
 })
 module.exports = router;

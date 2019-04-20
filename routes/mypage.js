@@ -22,7 +22,7 @@ router.get('/',(req,res) => {
             if(err) console.log(err);
             from = result[0].fromuser;
             title = result[0].title + "에 대한 답장"
-            res.render('mypage.ejs',{
+            res.render('viewmail.ejs',{
                 info : result
             })
         })
@@ -31,10 +31,18 @@ router.get('/',(req,res) => {
         res.redirect('/auth');
     else
         res.redirect('/');
-}).post('/:num',(req,res) => {
+}).post('/:num/edit',(req,res) => {
     if(req.session.user !== undefined && req.session.flag === 1){
         db.query('insert into Mail (title,contents,fromuser,touser) values (?,?,?,?)',[title,req.body.contents,req.session.user,from]);  
         res.send('<script type="text/javascript">alert("메일발송완료");window.location.href="/";</script>') 
+    }
+    else if(req.session.flag === 0 && req.session.user !== undefined)
+        res.redirect('/auth');
+    else
+        res.redirect('/');
+}).get('/:num/edit',(req,res) => {
+    if(req.session.user !== undefined && req.session.flag === 1){
+        res.render('wrmail.ejs');
     }
     else if(req.session.flag === 0 && req.session.user !== undefined)
         res.redirect('/auth');

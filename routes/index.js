@@ -51,7 +51,8 @@ router.get('/', (req, res) => {
   })
 }).post('/fake/:num/edit',(req,res) => {
   if(req.body.title !== '' && req.body.contents !==''){
-    db.query('update News set title = ?, contents = ?, flag = 1 where id = ?',[req.body.title,req.body.contents,req.params.num]);
+    db.query('update News set title = ?, contents = ?, flag = 1, GV = 0,BV = 0 where id = ?',[req.body.title,req.body.contents,req.params.num]);
+    db.query('delete from Voted Where id = ?',req.params.num);
     res.send('<script type="text/javascript">alert("기사수정을 완료했습니다. 수정된 기사는 검열 후에 다시 업로드 될 것입니다.");window.location.href="/";</script>')
   }
   else
