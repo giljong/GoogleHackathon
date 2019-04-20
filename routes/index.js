@@ -6,29 +6,34 @@ router.get('/', (req, res) => {
   if(req.session.user!==undefined && req.session.flag===0){
     res.redirect('/auth');
   }
-  db.query('select * from News where user = ("select user from Reporters where best = 1") order by id desc',(err,result) => {
+  db.query('select * from News where user = ("select user from Reporter where best = 1") order by id desc',(err,result) => {
     if(err) console.log(err);
-    var arr = [];
-    var check = [];
-    var cnt = 0;
-    var flag = 0;
-    var cnt2 = 0;
-    for(var i = 0;i<result.length;i++){
-      for(var j = 0;j<cnt;j++){
-        if(result[i].grname === check[j]){
-          flag = 1;
-          break;
-         }
+    if(result !== undefined){
+      var arr = [];
+      var check = [];
+      var cnt = 0;
+      var flag = 0;
+      var cnt2 = 0;
+      for(var i = 0;i<result.length;i++){
+        for(var j = 0;j<cnt;j++){
+          if(result[i].grname === check[j]){
+            flag = 1;
+            break;
+          }
+        }
+        if(!flag){
+          arr[cnt2++] = result[i];
+          check[cnt++] = result[i].grname;
+        }
+        flag = 0;
       }
-      if(!flag){
-        arr[cnt2++] = result[i];
-        check[cnt++] = result[i].grname;
-      }
-      flag = 0;
-    }
       res.render('index.ejs',{
         news : arr
       });
+    }
+    else{
+      res.redirect('/news/all');
+    }
   });
 }).get('/fake',(req,res) => {
   db.query('select TITLE,GRNAME,USER,ID from News where flag = 0',(err,result) => {
@@ -46,7 +51,8 @@ router.get('/', (req, res) => {
   })
 }).post('/fake/:num/edit',(req,res) => {
   if(req.body.title !== '' && req.body.contents !==''){
-    db.query('update News set title = ?, contents = ?, flag = 1 where id = ?',[req.body.title,req.body.contents,req.params.num]);
+    db.query('update News set title = ?, contents = ?, flag = 1, GV = 0,BV = 0 where id = ?',[req.body.title,req.body.contents,req.params.num]);
+    db.query('delete from Voted Where id = ?',req.params.num);
     res.send('<script type="text/javascript">alert("기사수정을 완료했습니다. 수정된 기사는 검열 후에 다시 업로드 될 것입니다.");window.location.href="/";</script>')
   }
   else
