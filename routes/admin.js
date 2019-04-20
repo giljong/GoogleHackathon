@@ -7,18 +7,18 @@ router.get('/',(req,res) => {
     if(req.session.user === undefined || req.session.flag === 0){
       res.redirect('/');
     } else {
-    db.query('select * from Users where ad = 1 and user = ?',req.session.user,(err,result) => {
+    db.query('select * from Users where AD=1 and email = ?',req.session.user,(err,result) => {
         if(err) console.log(err)
         if(result !== undefined){
             db.query('select title,id from News where flag = 1',(error,results) => {
                 if(error) console.log(error);
-                res.render('list.ejs',{
+                res.render('admin.ejs',{
                     news : results
                 })
             })
         }
         else
-          res.redirect('<script type="text/javascript">alert("일반 사용자는 접근할 수 없습니다.");window.location.href="/"</script>');
+          res.send('<script type="text/javascript">alert("일반 사용자는 접근할 수 없습니다.");window.location.href="/"</script>');
     })
   }
 }).get('/:num',(req,res) => {
@@ -35,7 +35,7 @@ router.get('/',(req,res) => {
             })
         }
         else
-            res.send('<script type="text/javascript">alert("일반사용자는 접근불가능한 페이지입니다.");window.location.href="/";</script>')
+            res.send('<script type="text/javascript">alert("일반사용자는 접근불가능한 페이지입니다.");window.location.href="/";</script>');
     })
 }).post('/:num',(req,res) => {
 
