@@ -353,19 +353,21 @@
 </tr>
 </thead>
 <tbody>
-<% news.forEach(function (item,index){ %>
+<% for (var i = 0; i < news.length; i++){ %>
 <tr>
 <td>
-  <%= item.ID %>
+  <%= news.ID %>
 </td>
 <td>
-<a href='/detail/<%= item.ID %>'><%= item.TITLE %></a>
+<a href='/fake/<%= news.ID %>'><%= news.TITLE %></a>
 </td>
 <td>
-  <%= item.CATEGORIZE %>
+  <%= news.CATEGORIZE %>
 </td>
+<td>
+  <a href="/fake/<%= news.ID%>/edit">edit</a>
 </tr>
-  <% })%>
+  <% }%>
 </tbody>
 </table>
 </div>
