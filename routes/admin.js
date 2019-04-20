@@ -7,11 +7,11 @@ router.get('/',(req,res) => {
     if(req.session.user === undefined || req.session.flag === 0){
       res.redirect('/');
     } 
-    else {
+    else{
         db.query('select * from Users where AD=1 and email = ?',req.session.user,(err,result) => {
             if(err) console.log(err)
             if(result !== undefined){
-                db.query('select title,id from News where flag = 1',(error,results) => {
+                db.query('select * from News where flag = 1',(error,results) => {
                     if(error) console.log(error);
                     res.render('admin.ejs',{
                         news : results
@@ -26,15 +26,29 @@ router.get('/',(req,res) => {
     .get('/:num/:string',(req,res) => {
         db.query('select * from Voted where id = ? and user = ?',[req.params.num,req.session.user],(err,result) =>{
         if(err) console.log(err);
-        if(result === undefined){
+        if(result.length === 0){
             if(req.params.string ==='Good'){
                 db.query('update News set GV = GV+1 where id = ?',req.params.num);
                 db.query('insert into Voted (id,user) values(?,?)',[req.params.num,req.session.user]);
+                db.query('select * from News where id = ?',req.params.num,(error,results) => {
+                   if(error) console.log(error);
+                   if(results[0].GV >= 4){
+                       db.query('update News set flag=2 where id = ?',req.params.num);
+                   } 
+                })
                 res.send('<script type="text/javascript">alert("투표완료");window.location.href="/admin";</script>');
             }
             else if(req.params.string === 'Bad'){
                 db.query('update News set BV = BV+1 where id = ?',req.params.num);
                 db.query('insert into Voted (id,user) values(?,?)',[req.params.num,req.session.user]);
+                db.query('select * from News where id = ?',req.params.num,(error,results) => {
+                    if(error) console.log(error);
+                    if(results[0].BV >= 4){
+                        db.query('update News set flag=0 where id = ?',req.params.num);
+                        db.query('update Users set cnt=cnt+1 where email = ("select user from Reported where id = ? and user = ?")',[req.params.num,req.session.user]);
+                        db.query('delete from Reported id = ?',req.params.num);
+                    } 
+                 })
                 res.send('<script type="text/javascript">alert("투표완료");window.location.href="/admin";</script>')
             }
         }

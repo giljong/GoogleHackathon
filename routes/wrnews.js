@@ -27,7 +27,8 @@ router.get('/',(req,res) => {
                 res.send('<script type="text/javascript">alert("일반사용자는 기사를 작성할 수 없습니다.");window.location.href="/";</script>');
             }
             else{
-                db.query('insert into News (TITLE,CONTNETS,USER,CATEGORIZE) values(?,?,?,?)',[req.body.title,req.body.contents,req.session.user,req.body.categorize]);
+                db.query('insert into News (TITLE,CONTENTS,USER,CATEGORIZE,GRNAME) values(?,?,?,?,?)',[req.body.title,req.body.contents,req.session.user,req.body.categorize,result[0].GRNAME]);
+                res.redirect('/');
             }
         })
     }
