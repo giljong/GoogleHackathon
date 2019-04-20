@@ -693,13 +693,6 @@ pasing: result2
 
 
 
-//메인화면
-router.get("/", function (req, res) {
-console.log("메인화면")
-//main 으로 들어오면 바로 페이징 처리
-res.redirect('/news/all/' + 1);
-
-});
 
 router.get("/all", function (req, res) {
     if(req.session.user!==undefined && req.session.flag===0){

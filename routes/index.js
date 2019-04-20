@@ -26,14 +26,9 @@ router.get('/', (req, res) => {
       }
       flag = 0;
     }
-    if(arr.length<1){
-      res.redirect('/news/all');
-    }
-    else{
       res.render('index.ejs',{
         news : arr
       });
-    }
   });
 }).get('/fake',(req,res) => {
   db.query('select TITLE,GRNAME,USER,ID from News where flag = 0',(err,result) => {
@@ -56,7 +51,7 @@ router.get('/', (req, res) => {
   }
   else
     res.send('<script type="text/javascript">alert("비어있는 칸이 있는지 확인해주세요.");window.location.href="/fake/ '+req.params.num+'/edit";</script>')
-  
+
 }).get('/fake/:num/edit',(req,res) => {
   if(req.session.user === undefined || req.session.flag === 0)
     res.redirect('/fake/'+req.params.num);
