@@ -16,6 +16,8 @@ const schedule = require('node-schedule');
 const productRouter = require('./routes/news');
 const detailRouter = require('./routes/detail');
 const adminRouter = require('./routes/admin');
+const addgrRouter = require('./routes/grenroll')
+const addrpRouter = require('./routes/reportenroll');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
@@ -37,6 +39,8 @@ app.use('/logout',logoutRouter);
 app.set('view engine', 'ejs');
 app.use('/news',productRouter);
 app.use('/detail',detailRouter);
+app.use('/addgroup',addgrRouter);
+app.use('/addrp',addrpRouter);
 app.use(helmet());
 
 // catch 404 and forward to error handler

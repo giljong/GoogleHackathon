@@ -6,33 +6,33 @@ router.get('/', (req, res) => {
   if(req.session.user!==undefined && req.session.flag===0){
     res.redirect('/auth');
   }
-  db.query('select * from News where user = ("select user from Reporters where best = 1") order by id desc',(err,result) => {
+  db.query('select * from News where user = ("select user from Reporter where best = 1") order by id desc',(err,result) => {
     if(err) console.log(err);
-    var arr = [];
-    var check = [];
-    var cnt = 0;
-    var flag = 0;
-    var cnt2 = 0;
-    for(var i = 0;i<result.length;i++){
-      for(var j = 0;j<cnt;j++){
-        if(result[i].grname === check[j]){
-          flag = 1;
-          break;
-         }
-      }
-      if(!flag){
-        arr[cnt2++] = result[i];
-        check[cnt++] = result[i].grname;
-      }
-      flag = 0;
-    }
-    if(arr.length<1){
-      res.redirect('/news/all');
-    }
-    else{
+    if(result !== undefined){
+      var arr = [];
+      var check = [];
+      var cnt = 0;
+      var flag = 0;
+      var cnt2 = 0;
+      for(var i = 0;i<result.length;i++){
+        for(var j = 0;j<cnt;j++){
+          if(result[i].grname === check[j]){
+            flag = 1;
+            break;
+          }
+        }
+        if(!flag){
+          arr[cnt2++] = result[i];
+          check[cnt++] = result[i].grname;
+        }
+        flag = 0;
+      }      
       res.render('index.ejs',{
         news : arr
       });
+    }
+    else{
+      res.redirect('/news/all');
     }
   });
 }).get('/fake',(req,res) => {
