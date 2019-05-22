@@ -15,7 +15,7 @@ router.get('/',(req,res) => {
     else if(req.session.flag === 0 && req.session.user !== undefined)
         res.redirect('/auth');
     else
-        res.redirect('/');
+    res.send('<script type="text/javascript">alert("로그인이 필요한 컨텐츠입니다.");window.location.href="/login";</script>')
 }).get('/:num',(req,res) => {
     if(req.session.user !== undefined && req.session.flag === 1){
         db.query('select TITLE,CONTENTS,ID,FROMUSER from MAIL where id = ?',req.params.num,(err,result) => {

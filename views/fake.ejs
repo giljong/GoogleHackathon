@@ -356,16 +356,16 @@
 <% for (var i = 0; i < news.length; i++){ %>
 <tr>
 <td>
-  <%= news.ID %>
+  <%=news[i].ID%>
 </td>
 <td>
-<a href='/fake/<%= news.ID %>'><%= news.TITLE %></a>
+<a href='/fake/<%=news[i].ID %>'><%=news[i].TITLE%></a>
 </td>
 <td>
-  <%= news.CATEGORIZE %>
+  <%=news[i].CATEGORIZE%>
 </td>
 <td>
-  <a href="/fake/<%= news.ID%>/edit">edit</a>
+  <a href="/fake/<%=news.ID%>/edit">edit</a>
 </tr>
   <% }%>
 </tbody>

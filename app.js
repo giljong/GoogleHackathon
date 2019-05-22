@@ -44,7 +44,7 @@ app.use('/addrp',addrpRouter);
 app.use(helmet());
 
 // catch 404 and forward to error handler
-/*app.use(function(req, res, next) {
+app.use(function(req, res, next) {
   next(createError(404));
 });
 
@@ -57,7 +57,7 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('404.ejs');
-});*/
+});
 
 app.listen(3000, "0.0.0.0", () => {
   console.log("connect");

@@ -6,9 +6,8 @@ router.get('/', (req, res) => {
   if(req.session.user!==undefined && req.session.flag===0){
     res.redirect('/auth');
   }
-  db.query("select * from News where grname IN (select grname from Gr where best = 1) order by ID desc", (err,result) => {
+  db.query("select * from News where grname IN (select grname from Gr where best = 1) and flag = 2 order by ID desc", (err,result) => {
   // db.query('select * from News where grname in (select grname from Gr where best = 1) order by id desc',(err,result) => {
-    //console.log(result)
     if(err) console.log(err);
     if(result !== undefined){
       var arr = [];
@@ -17,27 +16,24 @@ router.get('/', (req, res) => {
       var flag = 0;
       var cnt2 = 0;
       for(var i = 0;i<result.length;i++){
-        for(var j = 0;j<result.length;j++){
-          if(result[i].grname === check[j]){
+        for(var j = 0;j<check.length;j++){
+          if(result[i].GRNAME === check[j]){
             flag = 1;
             break;
           }
         }
-        if(!flag){
+        if(flag === 0){
           arr[cnt2++] = result[i];
           check[cnt++] = result[i].GRNAME;
         }
         flag = 0;
       }
-      console.log(arr);
       res.render('index.ejs',{
         news : arr
-      });
-    }
-   /* else{
+      })
+    } else{
       res.redirect('/news/all');
     }
-    */
   });
 }).get('/fake',(req,res) => {
   db.query('select TITLE,GRNAME,USER,ID from News where flag = 0',(err,result) => {

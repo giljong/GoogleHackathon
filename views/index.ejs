@@ -355,16 +355,17 @@
 </tr>
 </thead>
 <tbody>
+<%console.log(news.ID)%>
 <% for ( var i = 0; i < news.length; i++){ %>
 <tr>
 <td>
-  <%=news.ID%>
+  <%=news[i].ID%>
 </td>
 <td>
-<a href='/detail/<%=news.ID%>'><%=news.TITLE%></a>
+<a href='/detail/<%news[i].ID%>'><%=news[i].TITLE%></a>
 </td>
 <td>
-  <%=news.CATEGORIZE%>
+  <%=news[i].CATEGORIZE%>
 </td>
 </tr>
   <% }%>
