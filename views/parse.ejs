@@ -162,6 +162,15 @@
    #cssmenu.small-screen #menu-indicator {
      display: none;
    }
+   .counting{
+     position: absolute;
+     top : 100%;
+     left : 50%;
+     font-size : 110%;
+   }
+   .container{
+     position : absolute;
+   }
    </style>
    <style>
    @import url(http://fonts.googleapis.com/css?family=Oswald);
@@ -363,4 +372,12 @@
   <% }%>
 </tbody>
 </table>
+<p>
+<br>
+  <div class="counting">
+  <% for (var i = 0;i<5;i++){%>
+  <a href='/parse?page=<%=i+1%>'><%=i+1%></a>
+  <% }%>
+  </div>
+  </p>
 </div>
