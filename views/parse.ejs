@@ -341,8 +341,7 @@
 </ul>
 </div>
 <div class="container">
-<h2>Nice News</h2>
-<p>News by Nice press.</p>
+<h2>External News</h2>
 
 <table class="table table-striped">
 <thead>
@@ -352,15 +351,16 @@
 </tr>
 </thead>
 <tbody>
-<% for ( var i = 0; i < news.length; i++){ %>
+<% for ( var i = 0; i < title.length; i++){ %>
 <tr>
 <td>
-  i+1
+  <%=i+1%>
 </td>
 <td>
-<a href='<%=url[i]%>'><%=title%></a>
-<% console.log(news[i].ID)%>
+<a href='<%=url[i]%>'><%=title[i]%></a>
 </td>
+</tr>
+  <% }%>
 </tbody>
 </table>
 </div>

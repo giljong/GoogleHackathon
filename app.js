@@ -31,6 +31,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/', indexRouter);
+app.use('/fake',fakeRouter);
+app.use('/parse',parseRouter);
 app.use('/admin', adminRouter);
 app.use('/mypage',myPageRouter);
 app.use('/wrnews',writeRouter);
@@ -43,8 +45,6 @@ app.use('/news',productRouter);
 app.use('/detail',detailRouter);
 app.use('/addgroup',addgrRouter);
 app.use('/addrp',addrpRouter);
-app.use('/fake',fakeRouter);
-app.use('/parse',parseRouter);
 
 app.use(helmet());
 
