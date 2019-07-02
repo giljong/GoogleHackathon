@@ -4,14 +4,14 @@ const router = express.Router();
 const db = require('../db/connetion.js');
 
 router.get('/',(req,res) => {
-    if(req.session.user !== undefined || req.session.flag === 0){
+    if(req.session.user !== undefined && req.session.flag === 0){
       res.redirect('/auth');
     }
-    else if(req.session.user === undefined){
+    if(req.session.user === undefined){
         res.send('<script type="text/javascript">alert("로그인이 필요한 컨텐츠입니다.");window.location.href="/login";</script>')
     }
     else{
-        db.query('select * from Users where AD=1 and email = ?',req.session.user,(err,result) => {
+        db.query('select * from Users where AD = 1 and email = ?',req.session.user,(err,result) => {
             if(err) console.log(err)
             if(result !== undefined){
                 db.query('select * from News where flag = 1',(error,results) => {
@@ -52,9 +52,9 @@ router.get('/',(req,res) => {
                  })
                 res.send('<script type="text/javascript">alert("투표완료");window.location.href="/admin";</script>')
             }
-        }
-        else{
-            res.send('<script type="text/javascript">alert("이미 투표한 기사입니다.");window.location.href="/admin";</script>')
+            else
+                res.send('<script type="text/javascript">alert("이미 투표한 기사입니다.");window.location.href="/admin";</script>')
+        
         }
     })
 })

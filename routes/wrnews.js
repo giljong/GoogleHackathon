@@ -35,7 +35,7 @@ router.get('/',(req,res) => {
     else if(req.session.flag === 0 && req.session.user !== undefined)
         res.redirect('/auth');
     else
-    res.send('<script type="text/javascript">alert("로그인이 필요한 컨텐츠입니다.");window.location.href="/login";</script>')
+        res.send('<script type="text/javascript">alert("로그인이 필요한 컨텐츠입니다.");window.location.href="/login";</script>')
 })
 
 module.exports = router;
