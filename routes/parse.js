@@ -19,3 +19,5 @@ router.get('/',(req,res) => {
         url : url
     })
 })
+
+module.exports = router;
